@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CommunityMemberRepository extends CustomCommunityMemberRepository, JpaRepository<CommunityMember, Long> {
     List<CommunityMember> findAllByCommunityId(Long communityId);
@@ -19,4 +20,6 @@ public interface CommunityMemberRepository extends CustomCommunityMemberReposito
             "where c.communityId = :communityId and " +
             "c.memberId =:memberId ")
     void deleteByMemberIdAndCommunityId(@Param("memberId") Long memberId,@Param("communityId") Long communityId);
+
+    Optional<CommunityMember> findByCommunityIdAndMemberId(Long communityId, Long memberId);
 }

@@ -7,6 +7,8 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static jakarta.persistence.FetchType.*;
+
 @Table(name = "Schedules")
 @Entity
 @Builder
@@ -23,9 +25,21 @@ public class Schedule {
     private String meetingPlace;
     private String price;
     private int maxParticipation;
-    private int Participant;
+    private int participant;
+    private String interest;
+    private String memberName;
+    private String memberImage;
 
-    @ManyToOne
+    public void setParticipant(int participant) {
+        if (participant < 0) {
+            this.participant = 0;
+        } else {
+            this.participant = participant;
+        }
+    }
+
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "community_id")
     private Community community;
 
 }

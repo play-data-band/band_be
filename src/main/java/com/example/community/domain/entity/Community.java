@@ -20,7 +20,6 @@ public class Community {
     private String interest;
     private String description;
     private String profileImage;
-    @OneToMany(mappedBy = "community")
-    private List<Schedule> schedules;
+
 
 }
